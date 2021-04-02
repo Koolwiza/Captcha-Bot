@@ -11,12 +11,12 @@ module.exports = {
     description: "Configure guild settings",
     usage: "config <type> [value]",
     async execute(message, [type, ...args], client) {
-        if(!message.member.permissions.has(MANAGE_GUILD)) return;
+        if (!message.member.permissions.has(MANAGE_GUILD)) return;
         let types = ['show', ...Object.keys(client.captcha.get(message.guild.id))]
-        if(!type) return message.channel.send("Please provide a type. \n" + types.join(', '))
-        if(!types.includes(type)) return message.channel.send("Please provide a valid type.\n" + types.join(', '))
+        if (!type) return message.channel.send("Please provide a type. \n" + types.join(', '))
+        if (!types.includes(type)) return message.channel.send("Please provide a valid type.\n" + types.join(', '))
 
-        if(type === "show") {
+        if (type === "show") {
             let output = `\`\`\`asciidoc\n== Captcha Configurations ==\n`
             let ac = client.captcha.get(message.guild.id)
             let props = Object.keys(client.captcha.get(message.guild.id))
@@ -31,6 +31,9 @@ module.exports = {
 
             })
             return message.channel.send(output + "```");
+        } else if (type === "role") {
+            let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]) || message.guild.roles.cache.find(c => c.name.toLowerCase().includes(args.join(" ").toLowerCase()))
+            client.captcha.set(message.guild.id, role.id, "role")
         } else {
             client.captcha.set(message.guild.id, args.join(" "), type)
             message.channel.send(`I have set \`${type}\` as \`${args.join(" ")}\`. \n \\**Keep in mind some keys have certain params.*\`\`\`Text: String (To the string to a randomized one, set it to "reset")\nSize: Number (will be parsed into number in system)\nColor: Hex (Can start with or without #)\nOpacity: Number (will be parsed into number in system))\`\`\``)

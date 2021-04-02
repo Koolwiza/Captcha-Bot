@@ -28,7 +28,8 @@ client.on('guildMemberAdd', async member => {
         text: null,
         size: null,
         color: null, // Dark codes default color
-        opacity: null
+        opacity: null,
+        role: '' // an id
     })
 
     let captchaImage = new Captcha({
