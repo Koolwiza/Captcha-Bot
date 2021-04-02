@@ -1,0 +1,17 @@
+{
+  "name": "dark-codes-testing",
+  "version": "1.0.0",
+  "description": "Testing bot for dark codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Koolwiza",
+  "license": "MIT",
+  "dependencies": {
+    "captcha-canvas": "^2.2.2",
+    "discord.js": "^12.5.2",
+    "enmap": "^5.8.4",
+    "node-fetch": "^2.6.1"
+  }
+}
