@@ -65,9 +65,9 @@ client.on('guildMemberAdd', async member => {
     let content = col.first().content
     if(captchaImage.text === content) {
         member.user.send("You have completed the captcha!")
-        /* await member.roles.add('roleId').catch(e => {
+         await member.roles.add(data.role).catch(e => {
             console.log("Could not add role to " + member.user.tag)
-        }) */
+        }) 
     } else {
         await member.send(new Discord.MessageEmbed()
             .setTitle("CAPTCHA FAILED")
