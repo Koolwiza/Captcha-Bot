@@ -34,9 +34,9 @@ client.on('guildMemberAdd', async member => {
 
     let captchaImage = new Captcha({
         defaultText: data.text === "reset" ? null : data.text,
-        textSize: data.size,
-        textColor: data.color,
-        decoyOpacity: data.opacity
+        textSize: data.size === "reset" ? null : data.size,
+        textColor: data.color === "reset" ? null : data.size,
+        decoyOpacity: data.opacity === "reset" ? null : data.size
     }).create()
 
     let embed = new Discord.MessageEmbed()
